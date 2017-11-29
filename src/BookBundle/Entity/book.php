@@ -24,6 +24,14 @@ class book
     /**
      * @var string
      *
+     * @ORM\Column(name="title", type="string", length=255)
+     */
+    private $title;
+
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="author", type="string", length=255)
      */
     private $author;
@@ -68,7 +76,7 @@ class book
      *
      * @ORM\Column(name="status", type="integer")
      */
-    private $status;
+    private $status = 1;
 
 
     public function __construct()
@@ -85,6 +93,30 @@ class book
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return book
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 
     /**
@@ -142,9 +174,9 @@ class book
      *
      * @return book
      */
-    public function setCategor($categor)
+    public function setCategory($category)
     {
-        $this->categor = $categor;
+        $this->category = $category;
 
         return $this;
     }
@@ -154,9 +186,9 @@ class book
      *
      * @return string
      */
-    public function getCategor()
+    public function getCategory()
     {
-        return $this->categor;
+        return $this->category;
     }
 
     /**
