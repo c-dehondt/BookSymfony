@@ -28,6 +28,13 @@ class book
      */
     private $title;
 
+    /**
+     * @ORM\OneToOne(targetEntity="blogBundle\Entity\picture", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $picture;
+    
+
 
     /**
      * @var string
@@ -285,6 +292,30 @@ class book
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set picture
+     *
+     * @param \BookBundle\Entity\Picture $picture
+     *
+     * @return book
+     */
+    public function setPicture(\sym\testBundle\Entity\Picture $picture = null)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get picture
+     *
+     * @return \BookBundle\Entity\picture
+     */
+    public function getpPicture()
+    {
+        return $this->picture;
     }
 }
 
