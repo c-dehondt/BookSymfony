@@ -40,7 +40,7 @@ class book
      *
      * @ORM\Column(name="categor", type="string", length=255)
      */
-    private $categor;
+    private $category;
 
     /**
      * @var \DateTime
@@ -62,6 +62,13 @@ class book
      * @ORM\Column(name="summarize", type="text")
      */
     private $summarize;
+
+    /**
+     * @var \int
+     *
+     * @ORM\Column(name="status", type="integer")
+     */
+    private $status;
 
 
     public function __construct()
@@ -129,9 +136,9 @@ class book
     }
 
     /**
-     * Set categor
+     * Set category
      *
-     * @param string $categor
+     * @param string $category
      *
      * @return book
      */
@@ -143,7 +150,7 @@ class book
     }
 
     /**
-     * Get categor
+     * Get category
      *
      * @return string
      */
@@ -222,6 +229,30 @@ class book
     public function getSummarize()
     {
         return $this->summarize;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     *
+     * @return book
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }
 

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>{% block title %}Book{% endblock %}</title>
+
+        {% block stylesheets %}
+            {# On charge le CSS de bootstrap depuis le site directement #}
+            {# We load the bootstrap CSS from the site directly #}
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        {% endblock %}
+
+    </head>
+
+    <body>
+            <header id="header" class="jumbotron text-center">
+                <h1>Free BOOK</h1>
+                <ul class="nav justify-content-end">
+                        <li class="nav-item">
+                          <a class="nav-link active" href="#">Member</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">All Book</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Add Book</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link disabled" href="#">Add Member</a>
+                        </li>
+                      </ul>
+            </header>
+
+            <div class="container">
+                    
+            <main class="row">
+
+                <div id="content" class="col-10">
+                {% block body %}
+                {% endblock %}
+                </div>
+
+            </main>
+
+
+    <hr>
+
+    <footer>
+      <p>The sky's the limit © {{ 'now'|date('Y') }} and beyond.</p>
+    </footer>
+
+  </div>
+
+
+  {% block javascripts %}
+    {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  {% endblock %}
+
+</body>
+</html>

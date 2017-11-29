@@ -3,6 +3,6 @@ book:
     type:     annotation
     prefix:   /home
 
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+# app:
+#     resource: '@AppBundle/Controller/'
+#     type: annotation
