@@ -29,12 +29,16 @@ class book
     private $title;
 
     /**
-     * @ORM\OneToOne(targetEntity="blogBundle\Entity\picture", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="BookBundle\Entity\picture", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $picture;
     
-
+    /**
+    * @ORM\ManyToOne(targetEntity="BookBundle\Entity\category", cascade={"persist"})
+    * @ORM\JoinColumn(nullable=false)
+    */
+    private $category;
 
     /**
      * @var string
@@ -50,12 +54,6 @@ class book
      */
     private $editor;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="categor", type="string", length=255)
-     */
-    private $category;
 
     /**
      * @var \DateTime
@@ -90,6 +88,7 @@ class book
     {
       //  By default, the date to enter a new book is today's date
       $this->dateOfEntry = new \Datetime();
+      
     }
 
     /**
@@ -172,30 +171,6 @@ class book
     public function getEditor()
     {
         return $this->editor;
-    }
-
-    /**
-     * Set category
-     *
-     * @param string $category
-     *
-     * @return book
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return string
-     */
-    public function getCategory()
-    {
-        return $this->category;
     }
 
     /**
@@ -301,7 +276,7 @@ class book
      *
      * @return book
      */
-    public function setPicture(\sym\testBundle\Entity\Picture $picture = null)
+    public function setPicture($picture = null)
     {
         $this->picture = $picture;
 
@@ -311,11 +286,36 @@ class book
     /**
      * Get picture
      *
-     * @return \BookBundle\Entity\picture
+     * @return \BookBundle\Entity\Picture
      */
-    public function getpPicture()
+    public function getPicture()
     {
         return $this->picture;
     }
+
+
+    /**
+     * Set category
+     *
+     * @param \BookBundle\Entity\Category $category
+     *
+     * @return book
+     */
+    public function setCategory($category)
+    
+      {
+        $this->category = $category;
+        return $this;
+      }
+    
+      /**
+     * Get category
+     *
+     * @return \BookBundle\Entity\Category
+     */
+      public function getCategory()
+      {
+        return $this->category;
+      }
 }
 

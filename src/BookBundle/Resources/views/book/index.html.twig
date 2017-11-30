@@ -7,24 +7,44 @@
 {% block home_body %}
 
   <h2>List of Books</h2>
-  <div class="row">
-    <!-- card the averts  -->
-    {# {% for book in books %} #}
-    <div class="card col-sm-6 col-md-4 col-lg-3 mt-4" style="width: 20rem;">
-        <img class="card-img-top" src="http://mairiesaintecroixvolvestre.fr/wp-content/uploads/2015/06/livres.jpg" alt="pochette du livre">
-        <div class="card-body">
-          {# <h4 class="card-title">{{ book.title }}</h4>
-          <p class="card-text">{{ book.author }}</p>
-          <p class="card-text">{{ book.editor }}</p>
-          <p class="card-text">{{ book.category }}</p>
-          <p class="card-text">{{ book.dateOfEntry }}</p>
-          <p class="card-text">{{ book.releaseDate }}</p>
-          <p class="card-text">{{ book.status }}</p> #}
-          <a href="{{ path('bookAction' }}" class="btn btn-primary">Lire la suite</a>
-        </div>
-      </div>
-  {# {% endfor %} #}
+   <table class="table">
+      <thead class="thead-dark table-bordered">
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">Picture</th>
+          <th scope="col">Title</th>
+          <th scope="col">Author</th>
+          <th scope="col">Editor</th>
+          <th scope="col">dateOfEntry</th>
+          <th scope="col">releaseDate</th>
+          <th scope="col">status</th>
+          <th scope="col">Detail</th>
+        </tr>
+      </thead>
+
+      
+      <tbody>
+          {% for book in books %}
+        <tr>
+          <td scope="row">{{ book.id }}</td>
+          <td ><img
+               src="{{ asset(book.picture.webPath) }}"
+               alt="{{ book.picture.alt }}"/>
+          </td>
+          <td>{{ book.title }}</td>
+          <td>{{ book.author }}</td>
+          <td>{{ book.editor }}</td>
+          <td>{{ book.dateOfEntry|date('d/m/Y') }}</td>
+          <td>{{ book.releaseDate|date('d/m/Y') }}</td>
+          <td>{{ book.status }}</td>
+          <td><a href="{{ path('bookAction', {'id': book.id}) }}" class="btn btn-primary">Detail</a></td>
+        <tr>
+            {% endfor %}
+      </tbody>
+    </table>
     
-      </div>
+  
+</div>
+      
 
 {% endblock %}

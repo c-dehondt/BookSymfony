@@ -2,9 +2,16 @@
 
 namespace BookBundle\Controller;
 
+use BookBundle\Entity\book;
+use BookBundle\Entity\picture;
+use BookBundle\Entity\category;
+use BookBundle\Form\bookType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+
+
 
 class bookController extends Controller
 {
@@ -17,14 +24,14 @@ class bookController extends Controller
         // On récupère les livres
         // We get the books
         $books = $em->getRepository('BookBundle:book')->findAll();
-        
+        dump($books);
         return $this->render('BookBundle:book:index.html.twig', array(
-            'book' => $books
+            'books' => $books
         ));
     }
     
     /**
-     * Route(
+     * @Route(
      *     path=    "/book",
      *     name=    "bookAction"
      * )
@@ -39,18 +46,48 @@ class bookController extends Controller
     */
     public function bookAction($id){ 
         
-        // $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
         // On récupère d'un livre $id
         // We recover from a book $id
-        // $book = $em->getRepository('BookBundle:book')->find($id);
+        $book = $em->getRepository('BookBundle:book')->find($id);
           
-        // if (null === $book) 
-        // {
-        //     throw new NotFoundHttpException("the Book d'id ".$id." does not exist.");
-        // }
+        if (null === $book) 
+        {
+            throw new NotFoundHttpException("the Book d'id ".$id." does not exist.");
+        }
         return $this->render('BookBundle:book:detailBook.html.twig', array(
             'book' => $book
             ));
               
         }
+
+        /**
+         * @Route(
+         *     path=    "/book/add",
+         *     name=    "addBook"
+         * )
+        */
+        public function addBookAction(Request $request)
+        {
+            $book = new book();
+            $form   = $this->get('form.factory')->create(bookType::class, $book);
+     
+                if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) { 
+                  // Ajoutez cette ligne :
+                  // c'est elle qui déplace l'image là où on veut les stocker
+                  $book->getPicture()->upload();
+            
+                  // Le reste de la méthode reste inchangé
+                  $em = $this->getDoctrine()->getManager();
+                  $em->persist($book);
+                  $em->flush();
+
+                  $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+                   return $this->redirectToRoute('bookAction', array('id' => $book->getId()));
+                      }
+                  
+                      return $this->render('BookBundle:book:addBook.html.twig', array(
+                        'form' => $form->createView()));
+                             
     }
+}

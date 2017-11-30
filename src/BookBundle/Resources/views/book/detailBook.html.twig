@@ -1,1 +1,29 @@
-ok
+{% extends "BookBundle::layout.html.twig" %}
+
+{% block title %}
+  Accueil - {{ parent() }}
+{% endblock %}
+
+{% block home_body %}
+
+  <h2>Detail of Books</h2>
+  
+
+      
+          
+          <img
+               src="{{ asset(book.picture.webPath) }}"
+               alt="{{ book.picture.alt }}"/>
+          
+          <p>{{ book.title }}<p>
+          <p>{{ book.author }}<p>
+          <p>{{ book.editor }}<p>
+          <p>{{ book.dateOfEntry|date('d/m/Y') }}<p>
+          <p>{{ book.releaseDate|date('d/m/Y') }}<p>
+          <p>{{ book.status }}<p>
+            
+  
+  <p>{{ book.summarize}}</p>
+      
+
+{% endblock %}
