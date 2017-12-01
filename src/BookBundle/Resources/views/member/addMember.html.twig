@@ -1,16 +1,16 @@
 {% form_theme form 'bootstrap_3_layout.html.twig' %}
 
-{% extends "BookBundle:book:layout.html.twig" %}
+{% extends "BookBundle:member:layout.html.twig" %}
 
 
 {% block title %}
 
-  Add the Book- {{ parent() }}
+  Add the Member
 
 {% endblock %}
 
-{% block home_body %}
-    <h3>Form</h3>
+{% block member_body %}
+    <h3>Add the new member</h3>
     <div class="well">
         {{ form(form) }}
     </div>
