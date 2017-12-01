@@ -7,7 +7,7 @@
 {% block home_body %}
 
   <h2>List of Books</h2>
-   <table class="table">
+   <table class="table-responsive">
       <thead class="thead-dark table-bordered">
         <tr>
           <th scope="col">id</th>
@@ -27,7 +27,7 @@
           {% for book in books %}
         <tr>
           <td scope="row">{{ book.id }}</td>
-          <td ><img
+          <td class="row"><img class="col-6 img-responsive" 
                src="{{ asset(book.picture.webPath) }}"
                alt="{{ book.picture.alt }}"/>
           </td>
@@ -38,6 +38,7 @@
           <td>{{ book.releaseDate|date('d/m/Y') }}</td>
           <td>{{ book.status }}</td>
           <td><a href="{{ path('bookAction', {'id': book.id}) }}" class="btn btn-primary">Detail</a></td>
+          <td><a href="#" class="btn btn-primary">Borrow</a></td>
         <tr>
             {% endfor %}
       </tbody>

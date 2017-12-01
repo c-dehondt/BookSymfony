@@ -16,7 +16,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class bookController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route(
+     *     path=    "/",
+     *     name=    "allBook"
+     * )
+     * 
      */
     public function indexAction()
     {
@@ -24,7 +28,6 @@ class bookController extends Controller
         // On récupère les livres
         // We get the books
         $books = $em->getRepository('BookBundle:book')->findAll();
-        dump($books);
         return $this->render('BookBundle:book:index.html.twig', array(
             'books' => $books
         ));
@@ -73,11 +76,11 @@ class bookController extends Controller
             $form   = $this->get('form.factory')->create(bookType::class, $book);
      
                 if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) { 
-                  // Ajoutez cette ligne :
-                  // c'est elle qui déplace l'image là où on veut les stocker
+                  //  elle qui déplace l'image là où on veut les stocker
+                  // she who moves the image where we want to store them
                   $book->getPicture()->upload();
             
-                  // Le reste de la méthode reste inchangé
+                  
                   $em = $this->getDoctrine()->getManager();
                   $em->persist($book);
                   $em->flush();

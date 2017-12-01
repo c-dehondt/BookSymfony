@@ -8,22 +8,22 @@
 
   <h2>Detail of Books</h2>
   
+<div class="container card">
+  <div class="row">
+      <h4 class="card-title col-12">{{ book.title }}</h4>
+      <div class="card-body col-lg-5">
+          <img class="card-img-top img-fluid" src="{{ asset(book.picture.webPath) }}" alt="{{ book.picture.alt }}"/>    
+      </div>
 
-      
-          
-          <img
-               src="{{ asset(book.picture.webPath) }}"
-               alt="{{ book.picture.alt }}"/>
-          
-          <p>{{ book.title }}<p>
-          <p>{{ book.author }}<p>
-          <p>{{ book.editor }}<p>
-          <p>{{ book.dateOfEntry|date('d/m/Y') }}<p>
-          <p>{{ book.releaseDate|date('d/m/Y') }}<p>
-          <p>{{ book.status }}<p>
-            
-  
-  <p>{{ book.summarize}}</p>
-      
-
+      <div class="card-body col-lg-5">
+        <p><strong>Author: </strong> {{ book.author }}<p>
+        <p><strong>Editor: </strong>{{ book.editor }}<p>
+        <p><strong>date Of Entry: </strong>{{ book.dateOfEntry|date('d/m/Y') }}<p>
+        <p><strong>releaseDate: </strong>{{ book.releaseDate|date('d/m/Y') }}<p>
+        <p><strong>Status: </strong>{{ book.status }}<p>
+        <p><strong>To summarize: </strong>{{ book.summarize}}</p>
+        <a href="#" class="btn btn-primary">borrow</a>
+      </div>
+    </div>
+</div>
 {% endblock %}
