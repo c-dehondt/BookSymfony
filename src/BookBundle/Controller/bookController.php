@@ -168,10 +168,10 @@ class bookController extends Controller
         /**
          * delete the book
          * @Route(
-        * path = "home/book/{id}/delete",
-        * name="deleteBook",
-        *
-        * requirements={"id": "\d+"})
+         * path = "book/{id}/delete",
+         * name="deleteBook",
+         *
+         * requirements={"id": "\d+"})
         */
 
     public function deleteAction($id)
@@ -179,15 +179,9 @@ class bookController extends Controller
       {
         $em = $this->getDoctrine()->getManager(); 
         $book = $em->getRepository('BookBundle:book')->find($id);
-  
-        if (null === $book) {
-          throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
-        }
-        // On boucle sur les catégories de l'annonce pour les supprimer
-        foreach ($book->getCategories() as $category) {
-          $book->removeCategory($category);
-        }
+        $em->remove($book);
         $em->flush();
-        return $this->render('BookBundle:book:index.html.twig');
+        return $this->redirectToRoute('allBook');
+            
       }
 }

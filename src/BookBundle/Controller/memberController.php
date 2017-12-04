@@ -99,4 +99,25 @@ class memberController extends Controller
                         'form' => $form->createView()));
                              
     }
+
+
+        /**
+         * delete the member
+         * @Route(
+         * path = "member/{id}/delete",
+         * name="deleteMember",
+         *
+         * requirements={"id": "\d+"})
+        */
+
+    public function deleteAction($id)
+    
+      {
+        $em = $this->getDoctrine()->getManager(); 
+        $member = $em->getRepository('BookBundle:member')->find($id);
+        $em->remove($member);
+        $em->flush();
+        return $this->redirectToRoute('allMember');
+            
+      }
 }
