@@ -1,0 +1,17 @@
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% extends "BookBundle:member:layout.html.twig" %}
+
+
+{% block title %}
+
+  Add the Member
+
+{% endblock %}
+
+{% block member_body %}
+    <h3>Add the new member</h3>
+    <div class="well">
+        {{ form(form) }}
+    </div>
+{% endblock %}

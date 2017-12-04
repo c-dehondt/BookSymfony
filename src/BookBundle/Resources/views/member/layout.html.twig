@@ -1,0 +1,16 @@
+{% extends "::layout.html.twig" %}
+{% block title %}
+  Member
+{% endblock %}
+{% block body %}
+  {# On définit un sous-titre commun à toutes les pages du bundle, par exemple #}
+  {# We define a common subtitle for all the pages of the bundle, for example #}
+  <h2>Member</h2>
+  <hr>
+  {# On définit un nouveau bloc, que les vues du bundle pourront remplir #}
+  {# We define a new block, which the bundle views can fill #}
+  {% block member_body %}
+  
+  {% endblock %}
+
+{% endblock %}

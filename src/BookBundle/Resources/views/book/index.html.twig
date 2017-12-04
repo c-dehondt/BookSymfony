@@ -1,0 +1,57 @@
+{% extends "BookBundle:book:layout.html.twig" %}
+
+{% block title %}
+  Accueil - {{ parent() }}
+{% endblock %}
+
+{% block home_body %}
+
+  <h2>List of Books</h2>
+   <table class="table-responsive">
+      <thead class="thead-dark table-bordered">
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">Picture</th>
+          <th scope="col">Title</th>
+          <th scope="col">Author</th>
+          <th scope="col">Editor</th>
+          <th scope="col">dateOfEntry</th>
+          <th scope="col">releaseDate</th>
+          <th scope="col">status</th>
+          <th scope="col">Detail</th>
+          <th scope="col">borrow/back</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+
+      
+      <tbody>
+          {% for book in books %}
+        <tr>
+          <td scope="row">{{ book.id }}</td>
+          <td class="row"><img class="col-6 img-responsive" 
+               src="{{ asset(book.picture.webPath) }}"
+               alt="{{ book.picture.alt }}"/>
+          </td>
+          <td>{{ book.title }}</td>
+          <td>{{ book.author }}</td>
+          <td>{{ book.editor }}</td>
+          <td>{{ book.dateOfEntry|date('d/m/Y') }}</td>
+          <td>{{ book.releaseDate|date('d/m/Y') }}</td>
+          <td>{{ book.status }}</td>
+          <td><a href="{{ path('bookAction', {'id': book.id}) }}" class="btn btn-primary">Detail</a></td>
+          {% if book.status == 1 %}
+          <td><a href="{{ path('borrowBook', {'id': book.id}) }}" class="btn btn-primary">Borrow</a></td>
+          {% else %}
+          <td><a href="{{ path('backBook', {'id': book.id}) }}" class="btn btn-primary">Back</a></td>
+          {% endif %}
+          <td><a href="{{ path('deleteBook', {'id': book.id}) }}" class="btn btn-primary">delete</a></td>
+          
+        <tr>
+            {% endfor %}
+      </tbody>
+    </table>
+    
+
+
+{% endblock %}

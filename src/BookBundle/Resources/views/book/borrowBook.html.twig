@@ -1,0 +1,17 @@
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% extends "BookBundle:book:layout.html.twig" %}
+
+
+{% block title %}
+
+  Borrow book- {{ parent() }}
+
+{% endblock %}
+
+{% block home_body %}
+    <h3>Form</h3>
+    <div class="well">
+        {{ form(form) }}
+    </div>
+{% endblock %}

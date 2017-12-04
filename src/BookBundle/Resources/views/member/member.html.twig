@@ -1,0 +1,53 @@
+{% extends "BookBundle:member:layout.html.twig" %}
+
+{% block title %}
+  Member
+{% endblock %}
+
+{% block member_body %}
+
+  <h2 class="text-center">Detail of Member</h2>
+  
+  <div class="container card">
+      <div class="row">
+          <div class="card-body col-lg-5">
+            <h4>Member Infos</h4>
+            <p><strong>Id Member:</strong> {{ member.id }}</p>
+            <p><strong>Name member: </strong>{{ member.name }}</p>
+            <p><strong>Login: </strong>{{ member.login }}</p>
+            <p><strong>RegistrationDate: </strong>{{ member.registrationDate|date('d/m/Y') }}</p>
+            <p><strong>Street Address: </strong>{{ member.streetAddress}}</p>
+            <p><strong>Postal Post: </strong>{{ member.postalPost}}</p>            
+            <p><strong>City: </strong>{{ member.city}}</p>
+          </div>
+
+          <div class="card-body text-center col-lg-5">
+             <h4>Borrowed Book</h4>
+            
+             <table class="table-responsive">
+              <thead class="thead-dark table-bordered">
+                <tr>
+                  <th scope="col">Title</th>
+                  <th scope="col">Author</th>
+                  <th scope="col">Editor</th>
+                  <th scope="col">bake the book</th>
+                  
+                </tr>
+              </thead>
+  
+              <tbody>
+                  {% for book in member.book %}
+                <tr>
+                  <td>{{ book.title }}</td>
+                  <td>{{ book.author }}</td>
+                  <td>{{ book.editor }}</td>
+                  <td><a href="{{path('backBook', {'id': book.id})}}" class="btn btn-primary">bake the book</a></td>
+                <tr>
+                    {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          
+        </div>
+    </div>
+{% endblock %}
