@@ -41,7 +41,7 @@ class book
      private $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity="BookBundle\Entity\member", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="BookBundle\Entity\member", inversedBy="book", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      */
       private $member;

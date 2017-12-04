@@ -21,6 +21,13 @@ class member
      */
     private $id;
 
+    
+    /**
+     * @ORM\OneToMany(targetEntity="BookBundle\Entity\book", mappedBy="member", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $book;
+
     /**
      * @var string
      *
@@ -69,6 +76,7 @@ class member
      * @ORM\Column(name="registrationDate", type="datetime")
      */
     private $registrationDate;
+
 
     public function __construct()
     {
@@ -253,5 +261,40 @@ class member
     public function getRegistrationDate()
     {
         return $this->registrationDate;
+    }
+    
+
+    /**
+     * Add book
+     *
+     * @param \BookBundle\Entity\book $book
+     *
+     * @return member
+     */
+    public function addBook(\BookBundle\Entity\book $book)
+    {
+        $this->book[] = $book;
+
+        return $this;
+    }
+
+    /**
+     * Remove book
+     *
+     * @param \BookBundle\Entity\book $book
+     */
+    public function removeBook(\BookBundle\Entity\book $book)
+    {
+        $this->book->removeElement($book);
+    }
+
+    /**
+     * Get book
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBook()
+    {
+        return $this->book;
     }
 }

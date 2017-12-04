@@ -5,7 +5,7 @@
 
 {% block title %}
 
-  Add the Book
+  Borrow book- {{ parent() }}
 
 {% endblock %}
 
@@ -13,6 +13,5 @@
     <h3>Form</h3>
     <div class="well">
         {{ form(form) }}
-    {{ form_errors(form)}}
     </div>
 {% endblock %}

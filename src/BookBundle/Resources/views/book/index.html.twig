@@ -19,6 +19,8 @@
           <th scope="col">releaseDate</th>
           <th scope="col">status</th>
           <th scope="col">Detail</th>
+          <th scope="col">borrow/back</th>
+          <th scope="col">Delete</th>
         </tr>
       </thead>
 
@@ -38,7 +40,13 @@
           <td>{{ book.releaseDate|date('d/m/Y') }}</td>
           <td>{{ book.status }}</td>
           <td><a href="{{ path('bookAction', {'id': book.id}) }}" class="btn btn-primary">Detail</a></td>
-          <td><a href="#" class="btn btn-primary">Borrow</a></td>
+          {% if book.status == 1 %}
+          <td><a href="{{ path('borrowBook', {'id': book.id}) }}" class="btn btn-primary">Borrow</a></td>
+          {% else %}
+          <td><a href="{{ path('backBook', {'id': book.id}) }}" class="btn btn-primary">Back</a></td>
+          {% endif %}
+          <td><a href="{{ path('deleteBook', {'id': book.id}) }}" class="btn btn-primary">delete</a></td>
+          
         <tr>
             {% endfor %}
       </tbody>

@@ -20,6 +20,7 @@ class memberType extends AbstractType
         ->add('name',            TextType::class)
         ->add('age',             TextType::class)
         ->add('streetAddress',   TextType::class)
+        ->add('login',           TextType::class)
         ->add('city',            TextType::class)
         ->add('postalPost',      TextType::class)
         ->add('save',            SubmitType::class);

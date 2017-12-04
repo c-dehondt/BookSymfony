@@ -22,7 +22,7 @@
         <p><strong>releaseDate: </strong>{{ book.releaseDate|date('d/m/Y') }}<p>
         <p><strong>Status: </strong>{{ book.status }}<p>
         <p><strong>To summarize: </strong>{{ book.summarize}}</p>
-        <a href="#" class="btn btn-primary">borrow</a>
+        <a href="{{ path('borrowBook', {'id': book.id}) }}" class="btn btn-primary">borrow</a>
       </div>
     </div>
 </div>
