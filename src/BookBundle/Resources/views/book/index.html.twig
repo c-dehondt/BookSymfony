@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block home_body %}
-
   <h2>List of Books</h2>
-   <table class="table-responsive">
+
+    <table class="table table-responsive-sm">
       <thead class="thead-dark table-bordered">
         <tr>
           <th scope="col">id</th>
@@ -23,7 +23,6 @@
           <th scope="col">Delete</th>
         </tr>
       </thead>
-
       
       <tbody>
           {% for book in books %}
@@ -51,7 +50,5 @@
             {% endfor %}
       </tbody>
     </table>
-    
-
 
 {% endblock %}
