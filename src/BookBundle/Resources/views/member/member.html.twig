@@ -21,7 +21,7 @@
             <p><strong>City: </strong>{{ member.city}}</p>
           </div>
 
-          <div class="card-body text-center col-lg-5">
+          <div class="card-body text-center col-lg-7">
              <h4>Borrowed Book</h4>
             
              <table class="table-responsive">
@@ -31,7 +31,6 @@
                   <th scope="col">Author</th>
                   <th scope="col">Editor</th>
                   <th scope="col">bake the book</th>
-                  <th scope="col">Delete</th>
                   
                 </tr>
               </thead>
@@ -43,7 +42,7 @@
                   <td>{{ book.author }}</td>
                   <td>{{ book.editor }}</td>
                   <td><a href="{{path('backBook', {'id': book.id})}}" class="btn btn-primary">bake the book</a></td>
-                  <td><a href="{{path('deleteBook', {'id': book.id})}}" class="btn btn-primary">bake the book</a></td>                  
+
                   <tr>
                     {% endfor %}
               </tbody>

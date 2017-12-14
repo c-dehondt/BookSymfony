@@ -78,9 +78,9 @@ class memberController extends Controller
         $letter = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $login = "";
         for ($i = 0; $i < 5; $i++){
-            $login .= $number[rand(0, strlen($number))];
+            $login .= $number[rand(0, strlen($number)-1)];
         }
-        $login .= $letter[rand(0, strlen($letter))];
+        $login .= $letter[rand(0, strlen($letter)-1)];
             
             $form   = $this->get('form.factory')->create(memberType::class, $member);
             $form-> remove('login');
